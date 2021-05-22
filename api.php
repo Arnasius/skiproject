@@ -52,7 +52,7 @@ try {
     else
     {
         http_response_code(RESTConstants::HTTP_OK);
-        print( json_encode($res));
+        echo (json_encode($res));
     }
 
 } catch (Exception $e) {

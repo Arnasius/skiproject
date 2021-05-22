@@ -11,7 +11,7 @@ require_once 'config/dbCredentials.php';
 //        {
 //            $this->conn = $db;
 //        }
-
+        //Initializing connection
         function __construct()
         {
             parent::__construct();
@@ -64,5 +64,49 @@ require_once 'config/dbCredentials.php';
             return $res;
 
         }
+        function verifyOrder($id)
+        {
+            $sql = "SELECT order_id, store_id, franchise_id, team_skier_id, type, quantity, order_state FROM ski_order WHERE order_id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam("id", $id);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_NUM);
+            if ($row[0] == 0) {
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+
+
+
+        // Delete an order
+        Public function deleteOrder($uri)
+        {
+            $id = $uri[1];
+            $res = array();
+
+
+            $verify = $this->verifyOrder($id);
+
+            if ($verify == true) {
+                $sql = "DELETE FROM ski_order WHERE order_id = :id";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(":id", $id);
+                $stmt->execute();
+
+                echo "Order deleted";
+                return $res;
+            } else {
+                http_response_code(RESTConstants::HTTP_BAD_REQUEST);
+                echo "Error: Order number does not exist";
+                return $res;
+            }
+
+        }
+
+
 
     }
