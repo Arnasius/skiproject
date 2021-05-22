@@ -36,12 +36,13 @@ if (!$controller->isValidMethod($uri, $requestMethod)) {
     http_response_code(RESTConstants::HTTP_METHOD_NOT_ALLOWED);
     return;
 }
-if (!$controller->isValidPayload($uri, $requestMethod, $payload)) {
+
+//if (!$controller->isValidPayload($uri, $requestMethod, $payload)) {
     // Payload is incorrectly formatted
-    echo "Payload is incorrectly formatted";
-    http_response_code(RESTConstants::HTTP_BAD_REQUEST);
-    return;
-}
+//    echo "Payload is incorrectly formatted";
+//    http_response_code(RESTConstants::HTTP_BAD_REQUEST);
+//    return;
+
 try {
     $res = $controller->handleRequest($uri, $requestMethod, $queries, $payload);
     if(count($res) == 0)
@@ -51,6 +52,7 @@ try {
     else
     {
         http_response_code(RESTConstants::HTTP_OK);
+        print( json_encode($res));
     }
 
 } catch (Exception $e) {
