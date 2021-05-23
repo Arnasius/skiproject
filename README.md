@@ -51,6 +51,18 @@ Change the order state from new to open for an unassigned order (handling of non
 
 Example: PUT http://127.0.0.1/yaapi/customer-rep/{id}
 
+**Setup**
+
+1. Place the repository in .../xampp/htdocs
+
+2. Place the config/.htaccess file in htdocs folder.
+
+3. Import config/skiproject.sql into phpmyadmin
+
+4. Edit config/dbCredentials.php file to add your local settings for accessing the server.
+
+5. Use Postman or corresponding software to call methods.
+
 **References**
 
 Base for the API is taken from Rune Hjelsvold https://git.gvk.idi.ntnu.no/runehj/yaapi
