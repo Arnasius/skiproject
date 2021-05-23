@@ -18,7 +18,7 @@ Retrieve list of ski types with model filter.
 
 Example: GET http://127.0.0.1/yaapi/public?model={model}
 
-**Storekeeper endpoint: **
+**Storekeeper endpoint:**
 
 Create records newly produced skis
 
@@ -40,6 +40,7 @@ JSON body example (company_name needs to exist beforehand based on constraints):
     "msrp": 5.5
 }
 `
+
 **Customer representative endpoint**
 
 Retrieve orders with status filter set to new.
