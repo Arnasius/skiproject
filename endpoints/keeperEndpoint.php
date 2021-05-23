@@ -25,11 +25,11 @@ class keeper extends DBASE
         $res = array();
         $this->conn->beginTransaction();
         $sql = "INSERT INTO 
-                product (model, ski_type, company_name, temp, grip, size, weight, description, historical, phhoto_url, msrp)
+                product (model, ski_type, company_name, temp, grip, size, weight, description, historical, photo_url, msrp)
                 VALUES
-                (:model, :ski_type, :company_name, :temp, :grip, :size, :weight, :description, :historical, :phhoto_url, :msrp)";
+                (:model, :ski_type, :company_name, :temp, :grip, :size, :weight, :description, :historical, :photo_url, :msrp)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":model", $payload["model"]);
+        $stmt->bindParam("model", $payload["model"]);
         $stmt->bindParam("ski_type", $payload["ski_type"]);
         $stmt->bindParam("company_name", $payload["company_name"]);
         $stmt->bindParam("temp", $payload["temp"]);
