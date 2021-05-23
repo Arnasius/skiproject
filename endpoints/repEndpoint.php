@@ -32,8 +32,10 @@ class crep extends DBASE
 
         $row = $stmt->fetch(PDO::FETCH_NUM);
         if ($row[0] == 0) {
+            echo "Order does not exist";
             return false;
         } else {
+
             return true;
         }
 
