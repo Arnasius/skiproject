@@ -37,12 +37,6 @@ if (!$controller->isValidMethod($uri, $requestMethod)) {
     return;
 }
 
-//if (!$controller->isValidPayload($uri, $requestMethod, $payload)) {
-    // Payload is incorrectly formatted
-//    echo "Payload is incorrectly formatted";
-//    http_response_code(RESTConstants::HTTP_BAD_REQUEST);
-//    return;
-
 try {
     $res = $controller->handleRequest($uri, $requestMethod, $queries, $payload);
     if(count($res) == 0)
