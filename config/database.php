@@ -30,7 +30,7 @@ require_once 'dbCredentials.php';
 
 
         }
-        catch (PDOException $exception)
+        catch (PDOException $exception) // error handling for issues in regards to the database itself.
         {
         echo "database could not be connected: " . $exception->getMessage();
         }

@@ -3,15 +3,16 @@ require_once 'config/database.php';
 require_once 'config/dbCredentials.php';
 class crep extends DBASE
 {
-
+    //initializing connection
     function __construct()
     {
         parent::__construct();
     }
+    //handling the request
     public function handleRequest($uri, $requestMethod, $queries, $payload): array
     {
     $res = array();
-
+    // different method selection
     switch($requestMethod)
     {
         case RESTConstants::METHOD_PUT:
@@ -30,7 +31,7 @@ class crep extends DBASE
         $stmt->bindParam("id", $id);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_NUM);
+        $row = $stmt->fetch(PDO::FETCH_NUM); // handling errors if the state is not "new"
         if ($row[0] == 0) {
             echo "Order does not exist";
             return false;
@@ -40,7 +41,7 @@ class crep extends DBASE
         }
 
     }
-
+    //a function for changing the state from "new" to "open"
     public function changeState ($uri): array
     {
         $res = array();
@@ -63,9 +64,12 @@ class crep extends DBASE
             }
 
     }
+    // GET implementation for retrieving all orders based on their status.
     public function retrieveOrder($queries): array
     {
         $status = $queries['status'] ?? '';
+        //in the expectations, it was only required to let the customer rep view only new orders, however it makes more sense to check the
+        //other type of order states too, for flexibility in regards to problems.
         $sql = "SELECT order_id, store_id, franchise_id, team_skier_id, type, quantity, order_state FROM ski_order WHERE order_state = :status";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":status", $status);
@@ -83,7 +87,7 @@ class crep extends DBASE
             $res[$count]["order_state"] = $row ["order_state"];
             $count = $count + 1;
         }
-        if (count($res) == 0) // if nothing is returned, print out a message
+        if (count($res) == 0) // if nothing is returned, print out a message, error handling for non existing orders.
         {
             echo "No such orders exist";
             return $res;

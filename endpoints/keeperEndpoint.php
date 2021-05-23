@@ -3,12 +3,12 @@ require_once 'config/database.php';
 require_once 'config/dbCredentials.php';
 class keeper extends DBASE
 {
-
+    // initializing connection
     function __construct()
     {
         parent::__construct();
     }
-
+    // handling the request
     public function handleRequest($uri, $requestMethod, $queries, $payload): array
     {
         $res = array();
@@ -20,6 +20,7 @@ class keeper extends DBASE
         }
         return $res;
     }
+    // POST method for creating a record
     public function createRec($payload): array
     {
         $res = array();

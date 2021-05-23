@@ -63,6 +63,7 @@ require_once 'config/dbCredentials.php';
             return $res;
 
         }
+        // checking if an ID exists
         function verifyOrder($id): bool
         {
             $sql = "SELECT order_id, store_id, franchise_id, team_skier_id, type, quantity, order_state FROM ski_order WHERE order_id = :id";
@@ -98,7 +99,9 @@ require_once 'config/dbCredentials.php';
 
                 echo "Order deleted";
                 return $res;
-            } else {
+            } else
+                // error handling in regards to the ID issues
+                {
                 http_response_code(RESTConstants::HTTP_BAD_REQUEST);
                 echo "Error: Order number does not exist";
                 return $res;

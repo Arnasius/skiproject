@@ -7,7 +7,7 @@ require_once 'endpoints/keeperEndpoint.php';
 require_once 'endpoints/publicEndpoint.php';
 class APIController
 {
-
+    // Checking if the endpoint access is correct
     public function isValidEndpoint($uri): bool
     {
         switch ($uri[0]) {
@@ -36,7 +36,7 @@ class APIController
         }
         return false;
     }
-
+    //checking if the method is correct
     public function isValidMethod(array $uri, string $requestMethod): bool
     {
         switch ($uri[0])
@@ -77,7 +77,7 @@ class APIController
         }
         return false;
     }
-
+    // handling the call
     public function handleRequest($uri, $requestMethod, $queries, $payload): array
     {
         switch($uri[0])
