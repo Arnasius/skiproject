@@ -9,7 +9,7 @@ class keeper extends DBASE
         parent::__construct();
     }
 
-    public function handleRequest($uri, $requestMethod, $queries, $payload)
+    public function handleRequest($uri, $requestMethod, $queries, $payload): array
     {
         $res = array();
         // switch used for expandability
@@ -18,8 +18,9 @@ class keeper extends DBASE
                 $res = $this->createRec($payload);
                 break;
         }
+        return $res;
     }
-    public function createRec($payload)
+    public function createRec($payload): array
     {
         $res = array();
         $this->conn->beginTransaction();

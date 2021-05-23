@@ -8,21 +8,22 @@ class crep extends DBASE
     {
         parent::__construct();
     }
-    public function handleRequest($uri, $requestMethod, $queries, $payload)
+    public function handleRequest($uri, $requestMethod, $queries, $payload): array
     {
     $res = array();
 
     switch($requestMethod)
     {
         case RESTConstants::METHOD_PUT:
-            $res = $this->changeState($uri, $payload);
+            $res = $this->changeState($uri);
             break;
-        case RESTConstants::METHOD_GET($uri);
+        case RESTConstants::METHOD_GET:
+            $res = $this->retrieveOrder($queries);
             break;
     }
-
+    return $res;
     }
-    function verifyOrder($id) //verifying if an order is in the database
+    function verifyOrder($id): bool //verifying if an order is in the database
     {
         $sql = "SELECT order_id, store_id, franchise_id, team_skier_id, type, quantity, order_state FROM ski_order WHERE order_id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -38,7 +39,7 @@ class crep extends DBASE
 
     }
 
-    public function changeState ($uri)
+    public function changeState ($uri): array
     {
         $res = array();
         $id = $uri[1];
@@ -49,7 +50,7 @@ class crep extends DBASE
             $sql = "UPDATE ski_order SET order_state = 'open' WHERE order_id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $id);
-            $stmt->execute;
+            $stmt->execute();
             echo "Order state has been changed";
             return $res;
         }
@@ -60,7 +61,33 @@ class crep extends DBASE
             }
 
     }
-
+    public function retrieveOrder($queries): array
+    {
+        $status = $queries['status'] ?? '';
+        $sql = "SELECT order_id, store_id, franchise_id, team_skier_id, type, quantity, order_state FROM ski_order WHERE order_state = :status";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":status", $status);
+        $stmt->execute();
+        $res = array();
+        $count = 0;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+            $res[$count]["order_id"] = $row ["order_id"];
+            $res[$count]["store_id"] = $row ["store_id"];
+            $res[$count]["franchise_id"] = $row ["franchise_id"];
+            $res[$count]["team_skier_id"] = $row ["team_skier_id"];
+            $res[$count]["type"] = $row ["type"];
+            $res[$count]["quantity"] = $row ["quantity"];
+            $res[$count]["order_state"] = $row ["order_state"];
+            $count = $count + 1;
+        }
+        if (count($res) == 0) // if nothing is returned, print out a message
+        {
+            echo "No such orders exist";
+            return $res;
+        }
+        return $res;
+    }
 
 
 }

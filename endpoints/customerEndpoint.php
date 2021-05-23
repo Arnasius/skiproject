@@ -18,7 +18,7 @@ require_once 'config/dbCredentials.php';
         }
 
         // Handle request
-        public function handleRequest($uri, $requestMethod, $queries, $payload)
+        public function handleRequest($uri, $requestMethod, $queries, $payload): array
         {
             $res = array();
             switch ($requestMethod)
@@ -35,11 +35,10 @@ require_once 'config/dbCredentials.php';
         {
             $sql = "SELECT prod_plan_id FROM production_plan ORDER BY prod_plan_id DESC LIMIT 1";
             $stmt = $this->conn->query($sql);
-            $plan = $stmt->fetchColumn();
-            return $plan;
+            return $stmt->fetchColumn();
         }
         // GET production plan
-        public function getPlan()
+        public function getPlan(): array
         {
             $currentPlan = $this->defaultPlan();
             $sql = "SELECT prod_plan_id, start_date, end_date, company_name, ski_quantity, ski_type_quantity FROM production_plan WHERE prod_plan_id = '$currentPlan'";
@@ -64,7 +63,7 @@ require_once 'config/dbCredentials.php';
             return $res;
 
         }
-        function verifyOrder($id)
+        function verifyOrder($id): bool
         {
             $sql = "SELECT order_id, store_id, franchise_id, team_skier_id, type, quantity, order_state FROM ski_order WHERE order_id = :id";
             $stmt = $this->conn->prepare($sql);
@@ -83,7 +82,7 @@ require_once 'config/dbCredentials.php';
 
 
         // Delete an order
-        Public function deleteOrder($uri)
+        Public function deleteOrder($uri): array
         {
             $id = $uri[1];
             $res = array();
