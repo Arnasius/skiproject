@@ -73,6 +73,8 @@ Example: PUT http://127.0.0.1/yaapi/customer-rep/{id}
 
 4. Replace api.suite.yml and unit.suite.yml files in the test folder with the ones from the config folder and edit the credentials inside them.
 
+5. To run the tests, set up configurations in PHPstorm or run "php vendor/bin/codecept run" in the terminal.
+
 **References**
 
 Base for the API is taken from Rune Hjelsvold https://git.gvk.idi.ntnu.no/runehj/yaapi
