@@ -6,9 +6,5 @@ namespace Helper;
 
 class Api extends \Codeception\Module
 {
-    public function getClient()
-    {
-        return $this->getModule('REST')->client;
-    }
 
 }

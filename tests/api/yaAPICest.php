@@ -6,18 +6,24 @@ class yaAPICest
     {
     }
 
-    // tests
-    public function getExistingCarTest(ApiTester $I)
+
+
+    public function getCustomerTest(ApiTester $I)
     {
-        $I->sendGet('/cars/10');
+        $I->sendGet('customer');
         $I->seeResponseCodeIs(200);
-        $I->seeResponseIsJson();
-        $I->seeResponseContainsJson(['id' => 10]);
+        $I->seeResponseisjson();
+        $I->seeResponseContainsJson(['prod_plan_id'=>1]);
+
+
     }
 
-    public function getNonExistingCarTest(ApiTester $I)
+
+
+    public function putNonExistingOrder(ApiTester $I)
     {
-        $I->sendGet('/cars/30');
+        $I->sendPut('customer-rep/5');
         $I->seeResponseCodeIs(404);
     }
 }
+

@@ -169,7 +169,7 @@ CREATE TABLE `ski_order` (
 --
 
 INSERT INTO `ski_order` (`order_id`, `store_id`, `franchise_id`, `team_skier_id`, `type`, `quantity`, `order_state`) VALUES
-(1, 1, 1, 1, 'long', 50, 'open');
+(1, 1, 1, 1, 'long', 50, 'new');
 
 -- --------------------------------------------------------
 

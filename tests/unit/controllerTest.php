@@ -7,7 +7,7 @@ class controllerTest extends \Codeception\Test\Unit
      * @var \UnitTester
      */
     protected $tester;
-    
+
     protected function _before()
     {
     }
@@ -18,26 +18,22 @@ class controllerTest extends \Codeception\Test\Unit
 
     // tests
 
-    public function testIsInvalidCarResourceEndpoint()
+
+    public function testIsInvalidCustomerRepEndpoint()
     {
-        $controller = new APIController();
-        self::assertEquals(false, $controller->isValidEndpoint(['cars', 'JD12345'], 'GET', [], []));
+        $controller = new APIcontroller();
+        self::assertEquals(false, $controller->isValidEndpoint(['customer-rep', 'asd'], 'PUT', [], []));
     }
 
-    public function testExistingCarResource()
+
+    public function testIdVerification()
     {
         $controller = new APIController();
-        $res = $controller->handleRequest(['cars', '10'], 'GET', [], []);
+        $res = $controller->handleRequest(['customer', '1'], 'GET', [], []);
+
         self::assertNotEmpty($res);
-        if (isset($res['id'])) {
-            self::assertEquals(10, $res['id']);
+        if (isset($res['order_id'])) {
+            self::assertEquals(1, $res['order_id']);
         }
-    }
-
-    public function testNonExistingCarResource()
-    {
-        $controller = new APIController();
-        $res = $controller->handleRequest(['cars', '30'], 'GET', [], []);
-        self::assertEmpty($res);
     }
 }

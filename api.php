@@ -42,6 +42,7 @@ try {
     if(count($res) == 0)
     {
         http_response_code(RESTConstants::HTTP_NOT_FOUND);
+
     }
     else
     {

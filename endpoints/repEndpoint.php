@@ -55,6 +55,7 @@ class crep extends DBASE
             $stmt->bindValue(":id", $id);
             $stmt->execute();
             echo "Order state has been changed";
+            //array_push($res, "");
             return $res;
         }
         else
