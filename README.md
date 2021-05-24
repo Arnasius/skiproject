@@ -51,6 +51,30 @@ Change the order state from new to open for an unassigned order (handling of non
 
 Example: PUT http://127.0.0.1/yaapi/customer-rep/{id}
 
+**Setup**
+
+1. Place the repository in .../xampp/htdocs
+
+2. Place the config/.htaccess file in htdocs folder.
+
+3. Import config/skiproject.sql into phpmyadmin
+
+4. Edit config/dbCredentials.php file to add your local settings for accessing the server.
+
+5. Use Postman or corresponding software to call methods.
+
+**Testing setup**
+
+1. Install Composer if you don't have it already from https://getcomposer.org/download/
+
+2. Run config/codeceptionsetup.bat file in your root directory.
+
+3. Place config/skiproject.sql into tests/_data folder.
+
+4. Replace api.suite.yml and unit.suite.yml files in the test folder with the ones from the config folder and edit the credentials inside them.
+
+5. To run the tests, set up configurations in PHPstorm or run "php vendor/bin/codecept run" in the terminal.
+
 **References**
 
 Base for the API is taken from Rune Hjelsvold https://git.gvk.idi.ntnu.no/runehj/yaapi
