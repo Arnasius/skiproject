@@ -63,6 +63,16 @@ Example: PUT http://127.0.0.1/yaapi/customer-rep/{id}
 
 5. Use Postman or corresponding software to call methods.
 
+**Testing setup**
+
+1. Install Composer if you don't have it already from https://getcomposer.org/download/
+
+2. Run config/codeceptionsetup.bat file in your root directory.
+
+3. Place config/skiproject.sql into tests/_data folder.
+
+4. Replace api.suite.yml and unit.suite.yml files in the test folder with the ones from the config folder and edit the credentials inside them.
+
 **References**
 
 Base for the API is taken from Rune Hjelsvold https://git.gvk.idi.ntnu.no/runehj/yaapi
