@@ -77,10 +77,7 @@ Example: PUT http://127.0.0.1/yaapi/customer-rep/{id}
 
 **References**
 
-Base for the API is taken from Rune Hjelsvold https://git.gvk.idi.ntnu.no/runehj/yaapi
+Base for the API is referenced from Rune Hjelsvold yaAPI repository.
 
-Implementation is based on https://git.gvk.idi.ntnu.no/runehj/sample-rest-api-project
 
-File structure design idea is based on https://www.positronx.io/create-simple-php-crud-rest-api-with-mysql-php-pdo/
 
-PHP and SQL related references https://www.w3schools.com/ and https://stackoverflow.com/
