@@ -1,6 +1,6 @@
 Project owner: Arnas Gabijunas
 
-All the requests for a one man group project have been implemented based on the [project expectations](https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2021/-/wikis/Expectations-per-Group-Size).
+All the requests for a one man group project have been implemented based on the [project expectations](https://git.gvk.idi.ntnu.no/course/idatg2204/idatg2204-2021/-/wikis/Expectations-per-Group-Size). First attempt at PHP language.
 
 **Customer endpoint:**
 
